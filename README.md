@@ -15,11 +15,13 @@ Autor: [tu nombre completo]
 2. Ejecutar `npm install`.
 3. Crear un archivo `.env` en la raíz con estas variables:
 
+```
 DB_HOST=
 DB_USER=
 DB_PASSWORD=
 DB_NAME=
 DB_PORT=3306
+```
 
 4. Ejecutar: `node --env-file=.env index.js`
 
@@ -47,4 +49,6 @@ Cada tabla tiene 5 rutas: getX, getXById/:id, postX, putX/:id y deleteX/:id.
 Ejemplo: GET /api/medicamentos/getMedicamentos
 
 ## URL pública
-[se agrega después del despliegue]
+https://api-farmacia-1.onrender.com
+
+Ejemplo: https://api-farmacia-1.onrender.com/api/medicamentos/getMedicamentos
