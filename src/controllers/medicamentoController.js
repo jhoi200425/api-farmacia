@@ -34,8 +34,20 @@ module.exports = {
             res.status(400).json({message: 'Faltan datos obligatorios'});
             return;
         }
+        if(isNaN(precio) || isNaN(stock) || precio < 0 || stock < 0){
+            res.status(400).json({message: 'Precio y stock deben ser números válidos'});
+            return;
+        }
         medicamentoModel.postMedicamento(codigo, nombre, precio, stock, categoria_id, proveedor_id, (err, result)=>{
             if(err){
+                if(err.code === 'ER_DUP_ENTRY'){
+                    res.status(409).json({message: 'Ya existe un medicamento con ese código'});
+                    return;
+                }
+                if(err.code === 'ER_NO_REFERENCED_ROW_2'){
+                    res.status(400).json({message: 'La categoría o el proveedor no existe'});
+                    return;
+                }
                 res.status(500).json({error: err.message});
                 return;
             }
@@ -50,8 +62,20 @@ module.exports = {
             res.status(400).json({message: 'Faltan datos obligatorios'});
             return;
         }
+        if(isNaN(precio) || isNaN(stock) || precio < 0 || stock < 0){
+            res.status(400).json({message: 'Precio y stock deben ser números válidos'});
+            return;
+        }
         medicamentoModel.putMedicamento(id, codigo, nombre, precio, stock, categoria_id, proveedor_id, (err, result)=>{
             if(err){
+                if(err.code === 'ER_DUP_ENTRY'){
+                    res.status(409).json({message: 'Ya existe un medicamento con ese código'});
+                    return;
+                }
+                if(err.code === 'ER_NO_REFERENCED_ROW_2'){
+                    res.status(400).json({message: 'La categoría o el proveedor no existe'});
+                    return;
+                }
                 res.status(500).json({error: err.message});
                 return;
             }
@@ -67,6 +91,10 @@ module.exports = {
         const {id} = req.params;
         medicamentoModel.deleteMedicamento(id, (err, result)=>{
             if(err){
+                if(err.code === 'ER_ROW_IS_REFERENCED_2'){
+                    res.status(409).json({message: 'No se puede eliminar: el medicamento tiene ventas asociadas'});
+                    return;
+                }
                 res.status(500).json({error: err.message});
                 return;
             }
