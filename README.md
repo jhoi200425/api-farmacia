@@ -7,8 +7,8 @@ Autor: JHOICER OSPINO GARCIA
 ## URL pública
 https://api-farmacia-1.onrender.com
 
-# REPOSITORIO
-http://github.com/jhoi252004/api-farmacia
+# repositorio
+https://github.com/jhoi200425/api-farmacia
 
 Nota: está en un plan gratuito; la primera petición después de un tiempo sin uso puede tardar hasta 50 segundos.
 
